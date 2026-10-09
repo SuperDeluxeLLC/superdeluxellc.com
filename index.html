@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Deluxe — Software for people who write</title>
+<meta name="description" content="Super Deluxe is an independent software studio in California. We make Margin, a native writing app for Mac and iPad.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta property="og:title" content="Super Deluxe">
+<meta property="og:description" content="An independent software studio in California. Makers of Margin.">
+<link rel="preload" href="fonts/RedHatDisplay.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/RedHatText.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141416'/%3E%3Cpath d='M9 21.5c1.4 1.3 3.2 2 5.2 2 3 0 4.8-1.5 4.8-3.7 0-2.1-1.4-3-4-3.6-2.1-.5-2.9-.9-2.9-1.9 0-.9.8-1.5 2.1-1.5 1.3 0 2.4.5 3.3 1.3l1.4-1.8c-1.2-1.1-2.8-1.7-4.6-1.7-2.7 0-4.5 1.6-4.5 3.8 0 2.2 1.5 3.1 4 3.6 2 .5 2.8.9 2.8 1.9 0 1-.9 1.6-2.4 1.6-1.6 0-2.9-.6-3.9-1.6z' fill='%23fff'/%3E%3Ccircle cx='23.5' cy='21.5' r='2' fill='%23F07068'/%3E%3C/svg%3E">
+<style>
+  /* Red Hat Display and Text, and Instrument Serif italic for one word: SIL Open Font License, files in fonts/. */
+  @font-face{font-family:"Red Hat Display";src:url("fonts/RedHatDisplay.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+  @font-face{font-family:"Red Hat Text";src:url("fonts/RedHatText.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+  @font-face{font-family:"Instrument Serif";src:url("fonts/InstrumentSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+  /* Layout: sticky bar, hero with a drawn app window, products, principles, studio, contact, footer. One accent: Margin's coral. */
+  :root{
+    --bg:#FBFBFA; --bg2:#F2F1EE; --card:#FFFFFF; --ink:#141416; --ink2:#55534E; --faint:#8C8A84;
+    --line:rgba(20,20,22,.10); --line2:rgba(20,20,22,.18); --accent:#E8604F; --accent-ink:#B83E2F;
+    --paper:#F5EDE0; --paper-ink:#1F1A10; --win:#1B1B1E; --win2:#26262A;
+    --display:"Red Hat Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --sans:"Red Hat Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --serif:"Instrument Serif", "New York", Georgia, serif;
+    --mono:ui-monospace, "SF Mono", Menlo, "Cascadia Mono", monospace;
+    --script:"Courier Prime", "Courier New", Courier, monospace;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#0B0B0C; --bg2:#121214; --card:#151517; --ink:#F2F1EE; --ink2:#B4B1AA; --faint:#7C7A75;
+      --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16); --accent:#F07068; --accent-ink:#FF8E86; color-scheme:dark; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:24px}
+  .label{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+  /* bar */
+  header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:28px;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 18px/1 var(--display);letter-spacing:-.015em}
+  .mark{width:26px;height:26px;border-radius:7px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 14px/1 var(--display);position:relative}
+  .mark::after{content:"";position:absolute;right:4px;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  nav{display:flex;gap:24px;margin-left:auto;font-size:15px}
+  nav a{text-decoration:none;color:var(--ink2)}
+  nav a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;font:600 15px/1 var(--sans);text-decoration:none;border:1px solid transparent;white-space:nowrap}
+  .btn.primary{background:var(--ink);color:var(--bg)}
+  .btn.primary:hover{background:color-mix(in srgb,var(--ink) 86%,var(--accent))}
+  .btn.ghost{border-color:var(--line2);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--ink)}
+  .bar .btn{height:36px;padding:0 16px;font-size:14px}
+
+  /* hero */
+  .hero{padding-block:96px 72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
+  .hero h1{font:800 clamp(42px,5.6vw,68px)/1.02 var(--display);letter-spacing:-.035em;margin:18px 0 20px;text-wrap:balance}
+  em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--accent);padding-right:.04em}
+  .hero p{font-size:19px;color:var(--ink2);max-width:30em;margin:0 0 32px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line2);font:500 13px/1 var(--sans);color:var(--ink2)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+
+  /* the drawn window */
+  .window{background:var(--win);border-radius:14px;border:1px solid rgba(255,255,255,.08);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 30px 60px -20px rgba(0,0,0,.35),0 12px 24px -12px rgba(0,0,0,.25)}
+  .chrome{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;background:var(--win2);border-bottom:1px solid rgba(255,255,255,.06)}
+  .chrome i{width:11px;height:11px;border-radius:50%;background:#FF5F57}
+  .chrome i:nth-child(2){background:#FEBC2E}.chrome i:nth-child(3){background:#28C840}
+  .chrome span{margin:0 auto;font:500 12px/1 var(--sans);color:#9A978F;transform:translateX(-24px)}
+  .desk{display:grid;grid-template-columns:44px 1fr;min-height:340px;background:#202023}
+  .rail{display:flex;flex-direction:column;gap:14px;align-items:center;padding-top:18px;border-right:1px solid rgba(255,255,255,.05)}
+  .rail b{width:16px;height:16px;border-radius:4px;background:rgba(255,255,255,.14)}
+  .rail b:first-child{background:rgba(255,255,255,.3)}
+  .page{margin:22px 26px 0;background:var(--paper);color:var(--paper-ink);border-radius:6px 6px 0 0;padding:26px 30px 20px;font:400 12.5px/1.6 var(--script);position:relative}
+  .page .slug{font-weight:700}
+  .page .cue{padding-left:38%;margin-top:12px}
+  .page .dlg{padding-left:18%;padding-right:16%}
+  .k{margin:14px -12px 12px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(31,26,16,.12);border-bottom:2px solid var(--accent);border-radius:8px;padding:9px 12px;font:500 12.5px/1 var(--sans);color:var(--paper-ink)}
+  .k strong{color:var(--accent);font-weight:700}
+  .k span{color:#8C8576}
+  .k kbd{margin-left:auto;font:500 11px/1 var(--mono);color:#8C8576;border:1px solid rgba(31,26,16,.15);border-radius:4px;padding:3px 5px}
+
+  section{padding-block:88px;border-top:1px solid var(--line)}
+  .head{display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:640px}
+  .head h2{font:800 clamp(32px,3.8vw,46px)/1.06 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+  .head h2 em.s{color:inherit}
+  .head p{margin:0;color:var(--ink2);font-size:18px}
+
+  /* products */
+  .products{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:18px}
+  .card .top{display:flex;align-items:center;gap:16px}
+  .card img{width:64px;height:64px;border-radius:15px;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+  .card h3{margin:0;font:800 28px/1.1 var(--display);letter-spacing:-.02em}
+  .card p{margin:0;color:var(--ink2)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font:500 12px/1 var(--mono);padding:7px 10px;border-radius:7px;background:var(--bg2);color:var(--ink2)}
+  .chip.live{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent-ink)}
+  .feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;margin:4px 0 0;padding:0;list-style:none;font-size:15px}
+  .feats li{display:flex;gap:10px;color:var(--ink)}
+  .feats li::before{content:"";flex:none;width:6px;height:6px;margin-top:.6em;border-radius:50%;background:var(--accent)}
+  .card .btn{align-self:flex-start;margin-top:auto}
+  .card.next{background:transparent;border-style:dashed;border-color:var(--line2);justify-content:center}
+  .card.next h3{font-size:20px;color:var(--ink2)}
+
+  /* principles */
+  .grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .cell{background:var(--bg);padding:28px 24px;display:flex;flex-direction:column;gap:10px}
+  .cell .n{font:500 12px/1 var(--mono);color:var(--accent)}
+  .cell h4{margin:0;font:700 19px/1.25 var(--display);letter-spacing:-.01em}
+  .cell p{margin:0;font-size:15px;color:var(--ink2)}
+
+  /* studio + contact */
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+  .facts{display:grid;grid-template-columns:max-content 1fr;gap:14px 28px;margin:0;font-size:16px}
+  .facts dt{font:500 12px/1.9 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .facts dd{margin:0}
+  .facts a{text-decoration-color:var(--accent);text-underline-offset:3px}
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+
+  footer{border-top:1px solid var(--line);padding-block:32px 40px;color:var(--faint);font-size:14px}
+  .foot{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+  .foot nav{margin-left:auto;font-size:14px}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;padding-block:64px 48px}
+    .products,.split{grid-template-columns:1fr}
+    .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:560px){
+    nav.main{display:none}
+    .grid4{grid-template-columns:1fr}
+    .feats{grid-template-columns:1fr}
+    .card{padding:24px}
+    section{padding-block:64px}
+    .desk{grid-template-columns:1fr}.rail{display:none}
+    .page{margin:16px 14px 0;padding:20px 18px 16px;font-size:11.5px}
+    .k span,.k kbd{display:none}
+    .facts{grid-template-columns:1fr;gap:2px}.facts dd{margin-bottom:14px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Super Deluxe, home"><span class="mark" aria-hidden="true">S</span>Super Deluxe</a>
+    <nav class="main" aria-label="Sections">
+      <a href="#products">Products</a>
+      <a href="#principles">Principles</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn primary" href="https://writeinmargin.com">Get Margin</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="pill"><span class="dot" aria-hidden="true"></span>Now building Margin for Mac and iPad</span>
+      <h1>Software for people who <em class="s">write.</em></h1>
+      <p>Super Deluxe is an independent software studio in California. We build native apps for Mac and iPad that stay quiet on the surface and do a great deal underneath.</p>
+      <div class="actions">
+        <a class="btn primary" href="#products">Meet Margin</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="window" role="img" aria-label="Margin on a Mac: a screenplay page with the ⌘K field open under a line">
+      <div class="chrome"><i></i><i></i><i></i><span>The Lighter · Draft 3</span></div>
+      <div class="desk">
+        <div class="rail" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></div>
+        <div class="page" aria-hidden="true">
+          <div class="slug">INT. BAR - NIGHT</div>
+          <div style="margin-top:12px">Rain on the window. TOM sets a brass lighter on the bar and does not look at it.</div>
+          <div class="k"><strong>⌘K</strong>note the lighter comes back in act three<span>&nbsp;· Loose</span><kbd>return</kbd></div>
+          <div class="cue">MAY</div>
+          <div class="dlg">You kept it.</div>
+          <div class="cue">TOM</div>
+          <div class="dlg">I kept the lighter. That's different.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Products</span>
+        <h2>One app, made <em class="s">carefully.</em></h2>
+        <p>We would rather make one thing very well than many things quickly.</p>
+      </div>
+      <div class="products">
+        <article class="card">
+          <div class="top">
+            <img src="margin-icon.png" alt="The Margin app icon" width="64" height="64">
+            <div>
+              <h3>Margin</h3>
+              <div class="chips" style="margin-top:8px"><span class="chip">macOS</span><span class="chip">iPadOS</span><span class="chip live">Beta</span></div>
+            </div>
+          </div>
+          <p>Screenplays, novels and articles on one quiet page. Type what you want in ⌘K and it is done. See the whole story on the board when you need it.</p>
+          <ul class="feats">
+            <li>Every draft kept, read side by side</li>
+            <li>Plain Fountain and Markdown files</li>
+            <li>Notes that stay with their line</li>
+            <li>Final Draft, PDF, Word and ePub out</li>
+            <li>Apple Pencil on the page</li>
+            <li>No account, nothing collected</li>
+          </ul>
+          <a class="btn primary" href="https://writeinmargin.com">Visit writeinmargin.com</a>
+        </article>
+        <article class="card next">
+          <span class="label">Next</span>
+          <h3>More tools for writers are in the works.</h3>
+          <p>Write to us if there is one you wish existed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Principles</span>
+        <h2>How we <em class="s">build.</em></h2>
+      </div>
+      <div class="grid4">
+        <div class="cell"><span class="n">01</span><h4>Native, not web</h4><p>Built in Swift for Apple's own platforms, so it feels at home and works offline.</p></div>
+        <div class="cell"><span class="n">02</span><h4>Your files are yours</h4><p>Plain, open formats on your own device. No lock-in, no export ransom.</p></div>
+        <div class="cell"><span class="n">03</span><h4>Private by default</h4><p>No accounts, no analytics, no tracking. Nothing leaves unless you send it.</p></div>
+        <div class="cell"><span class="n">04</span><h4>Bought, not rented</h4><p>Pay once for the app. A subscription only for services that cost us to run.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="studio">
+    <div class="wrap split">
+      <div class="head" style="margin:0">
+        <span class="label">Studio</span>
+        <h2>Small on <em class="s">purpose.</em></h2>
+        <p>Super Deluxe LLC was founded in 2026 in California. We keep the team small so every detail gets looked at by someone who cares about it.</p>
+        <div class="stack"><span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">Core Text</span><span class="chip">PDFKit</span><span class="chip">PencilKit</span></div>
+      </div>
+      <dl class="facts" id="contact">
+        <dt>Company</dt><dd>Super Deluxe LLC</dd>
+        <dt>Based in</dt><dd>California, United States</dd>
+        <dt>Contact</dt><dd><a href="mailto:hello@superdeluxellc.com">hello@superdeluxellc.com</a></dd>
+        <dt>Support</dt><dd><a href="mailto:hello@writeinmargin.com">hello@writeinmargin.com</a></dd>
+        <dt>Product</dt><dd><a href="https://writeinmargin.com">writeinmargin.com</a></dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Super Deluxe LLC</span>
+    <span>This site sets no cookies and collects nothing.</span>
+    <nav aria-label="Footer"><a href="#products">Products</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="#contact">Contact</a></nav>
+  </div>
+</footer>
+</body>
+</html>
